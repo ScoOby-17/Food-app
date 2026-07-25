@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-async function connectDB() {
+export async function connectDB() {
   try {
     console.log("connecting start")
     await mongoose.connect(
@@ -13,4 +13,4 @@ async function connectDB() {
   }
 }
 
-connectDB();
+// connectDB();
