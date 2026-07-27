@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
-const Add = () => {
+const Add = ({url}) => {
    
-  const url = "http://localhost:4000"
   const [image , setImage] = useState(false)
   const [data , setData] = useState({
     name:"",
@@ -37,8 +37,10 @@ const Add = () => {
         category:"Salad"
       })
       setImage(false)
+      toast.success(response.data.message)
       console.log("Food Item add in backend")
     }else{
+      toast.error(response.data.message)
       console.log("Error occure in add data to database")
     }
     console.log(response.data)
@@ -73,7 +75,7 @@ const Add = () => {
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>Product category</p>
-            <select onChange={onChangeHandler} name="category" >
+            <select value={data.category} onChange={onChangeHandler} name="category" >
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
               <option value="Deserts">Deserts</option>
