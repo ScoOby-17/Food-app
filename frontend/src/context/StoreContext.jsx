@@ -64,7 +64,7 @@ const StoreContextProvider = (props) => {
         headers: { token },
       });
 
-      console.log(response.data);
+      // console.log(response.data);
       setCartItem(response.data.cartData);
       
     } catch (error) {
