@@ -5,7 +5,7 @@ import axios from 'axios'
 import { assets } from '../../assets/assets'
 
 const MyOrders = () => {
-    const [data , setData] = useState({})
+    const [data , setData] = useState([])
     const {url , token} = useContext(StoreContext)
 
     const fetchOrders = async()=>{
@@ -26,7 +26,7 @@ const MyOrders = () => {
     },[token])
     
   return (
-    <div className='mu-orders'>
+    <div className='my-orders'>
       <h2>My Orders</h2>
       <div className="containr">
         {data.map((order , index)=>{
@@ -45,7 +45,7 @@ const MyOrders = () => {
                     <p>${order.amount}.00</p>
                     <p>Items : {order.items.length}</p>
                     <p> <span>&#x25cf;</span> <b>{order.status}</b></p>
-                    <button>Track Order</button>
+                    <button onCanPlay={fetchOrders}>Track Order</button>
                 </div>
             )
         })}

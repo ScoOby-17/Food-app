@@ -110,4 +110,41 @@ const userOrders = async(req,res)=>{
 }
 
 
-export {placeOrder , verifyOrder, userOrders}
+//Listig orders for amin panel
+const listOrders  = async(req,res)=>{
+    try {
+        const orders = await orderModel.find({})
+        res.json({
+            success:true,
+            data:orders
+        })
+    } catch (error) {
+        console.log(error)
+        res.json({
+            success:false,
+            message:"Error in listOrders controller"
+        })
+    }
+}
+
+//api for updating order status
+const updateStatus = async(req,res)=>{
+    try {
+        const {orderId , status} = req.body
+        const order = await orderModel.findByIdAndUpdate(orderId , {status})
+        return res.json({
+            success:true,
+            message:"Order status updated"
+        })
+    } catch (error) {
+        console.log(error);
+        
+        return res.json({
+            success:false,
+            message:"error in updateStatus controller"
+        })
+    }
+}
+
+
+export {placeOrder , verifyOrder, userOrders , listOrders , updateStatus}
