@@ -19,6 +19,15 @@ app.use(cors())
 //DB connection
 connectDB()
 
+// Health check route
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: "Server is healthy",
+        status: "OK"
+    });
+});
+
 // API endPoints
 app.use("/api/food" , foodRouter)
 app.use('/images',express.static('uploads'))
